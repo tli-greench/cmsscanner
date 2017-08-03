@@ -59,7 +59,7 @@ class ContaoAdapterTest extends \PHPUnit_Framework_TestCase
         }
 
         $this->assertCount(2, $results);
-        $this->assertEquals(15, $falseCount);
+        $this->assertEquals(17, $falseCount);
         $this->assertArrayHasKey('2.10', $results);
         $this->assertArrayHasKey('3.1', $results);
         $this->assertInstanceOf('Cmsgarden\Cmsscanner\Detector\System', current($results));
