@@ -267,10 +267,28 @@ class DetectCommand extends AbstractDetectionCommand
     {
         // we need this to convert the \SplFileInfo object into a normal path string
         array_walk($results, function (&$result, $key) {
+		$encoding_list = array("CP1252", "ISO-8859-1", "ASCII");
+		$realpath = $result->getPath()->getRealPath();
+		//printf("** writing %s:\n", print_r($result, true));
+		if (! mb_check_encoding($realpath, "UTF-8")) {
+		    //printf("----: encoding list: %s\n", print_r($encoding_list, true));
+		    //printf("OOPS: wrong encoding for %s\n", $realpath);
+		    if (($encoding = mb_detect_encoding($realpath, $encoding_list, false)) === false) {
+			//printf("OOPS: unable to detect encoding of %s\n", $realpath);
+			$realpath = null;
+		    } else {
+			//printf("NOTE: Encoding detected for %s: %s\n", $realpath, $encoding);
+			$realpath = mb_convert_encoding($realpath, "UTF-8", $encoding);
+		    }
+		}
+		//printf("INFO: Path: %s\n", $realpath);
+		//printf("INFO: Path (mb coverted encoded): %s\n", mb_convert_encoding(json_encode((object) $realpath), "UTF-8"));
+		//printf("INFO: Path (encoded unescaped): %s\n", mb_convert_encoding(json_encode((object) $realpath, JSON_UNESCAPED_UNICODE), "UTF-8"));
+		//printf("INFO: Path (encoded): %s\n", json_encode((object) $realpath), "UTF-8");
                 $result = array(
                     "name" => $result->getName(),
                     "version" => $result->getVersion(),
-                    "path" => $result->getPath()->getRealPath()
+                    "path" => $realpath
                 );
         });
 
