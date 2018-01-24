@@ -1,8 +1,8 @@
 <?php
 /**
  * @package    CMSScanner
- * @copyright  Copyright (C) 2014 CMS-Garden.org
- * @license    GNU GPLv3 <http://www.gnu.org/licenses/gpl.html>
+ * @copyright  Copyright (C) 2014 - 2017 CMS-Garden.org
+ * @license    MIT <https://tldrlegal.com/license/mit-license>
  * @link       http://www.cms-garden.org
  */
 
@@ -10,11 +10,14 @@ namespace Cmsgarden\Cmsscanner\Command;
 
 use Cmsgarden\Cmsscanner\Detector\Adapter\AdapterInterface;
 use Cmsgarden\Cmsscanner\Detector\Adapter\ContaoAdapter;
+use Cmsgarden\Cmsscanner\Detector\Adapter\ContenidoAdapter;
 use Cmsgarden\Cmsscanner\Detector\Adapter\DrupalAdapter;
 use Cmsgarden\Cmsscanner\Detector\Adapter\JoomlaAdapter;
 use Cmsgarden\Cmsscanner\Detector\Adapter\PrestashopAdapter;
 use Cmsgarden\Cmsscanner\Detector\Adapter\Typo3CmsAdapter;
 use Cmsgarden\Cmsscanner\Detector\Adapter\WordpressAdapter;
+use Cmsgarden\Cmsscanner\Detector\Adapter\PivotxAdapter;
+use Cmsgarden\Cmsscanner\Detector\Adapter\Concrete5Adapter;
 use Cmsgarden\Cmsscanner\Detector\Adapter\CM4allSitesAdapter;
 use Cmsgarden\Cmsscanner\Detector\Adapter\MamboAdapter;
 use Cmsgarden\Cmsscanner\Detector\Adapter\SiteBuilderAdapter;
@@ -42,11 +45,14 @@ abstract class AbstractDetectionCommand extends Command
 
         $this
             ->addAdapter(new ContaoAdapter())
+            ->addAdapter(new ContenidoAdapter())
             ->addAdapter(new DrupalAdapter())
             ->addAdapter(new JoomlaAdapter())
             ->addAdapter(new PrestashopAdapter())
             ->addAdapter(new Typo3CmsAdapter())
             ->addAdapter(new WordpressAdapter())
+            ->addAdapter(new PivotxAdapter())
+            ->addAdapter(new Concrete5Adapter())
             ->addAdapter(new CM4allSitesAdapter())
             ->addAdapter(new MamboAdapter())
             ->addAdapter(new SiteBuilderAdapter())

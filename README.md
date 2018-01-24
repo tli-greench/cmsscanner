@@ -5,11 +5,15 @@
 This tool is developed by the CMS-Garden project. It's designed to scan a local filesystem for installations of the well known FOSS CMS systems that are part of the [CMS-Garden Project](http://www.cms-garden.org/):
 
 * Contao
+* CONTENIDO
 * Drupal
 * Joomla
 * TYPO3 CMS
 * WordPress
 * Prestashop
+* Alchemy CMS
+* PivotX
+* Concrete5
 
 It is designed to work on Linux, OS X and FreeBSD.
 
@@ -21,7 +25,7 @@ For available options, try running:
 
 1. Download the current version of CMSScanner as a phar archive:
 
-	`wget http://cms-garden.github.io/cmsscanner/downloads/cmsscanner-0.4.0.phar && mv cmsscanner-0.4.0.phar cmsscanner.phar`
+	`wget http://cms-garden.github.io/cmsscanner/downloads/cmsscanner-0.5.0.phar && mv cmsscanner-0.5.0.phar cmsscanner.phar`
 
 2. Make it executable
 
@@ -102,6 +106,40 @@ Output:
 	| 8.2.7   | 2               |
 	+---------+-----------------+
 
+### Detect used modules/extensions:
+
+	cmsscanner.phar cmsscanner:detect --modules /var/www
+
+Output:
+
+	Successfully finished scan!
+	CMSScanner found 56 CMS installations!
+
+	+------------+-----------------+-----------+
+	| CMS        | # Installations | # Modules |
+	+------------+-----------------+-----------+
+	| Joomla     | 29              | 131       |
+	| Prestashop | 1               | 0         |
+	| Contao     | 4               | 7         |
+	| WordPress  | 7               | 2         |
+	| TYPO3 CMS  | 3               | 1         |
+	| Drupal     | 4               | 8         |
+	| Contenido  | 8               | 0         |
+	+------------+-----------------+-----------+
+
+	Module specific stats:
+	Joomla:
+	+------------------------------------+-----------------+
+	| Module                             | # Installations |
+	+------------------------------------+-----------------+
+	| JSN_UNIFORM_PLUGIN_BUTTON_TITLE    | 1               |
+	| JSN_UNIFORM_PLUGIN_CONTENT_TITLE   | 1               |
+	| JSN ImageShow Quick Icons          | 1               |
+	| PLG_SYSTEM_AKEEBAUPDATECHECK_TITLE | 3               |
+	| PLG_SYSTEM_BACKUPONUPDATE_TITLE    | 3               |
+	| Content - JSN ImageShow            | 1               |
+	...
+
 ### Limit recursion depth
 By using the --depth options, it's possible to limit the recursion depth of the scan. This will increase the performance but decrease the accuracy of the scan:
 
@@ -127,7 +165,57 @@ This results in a report file like this:
 	   }
 	]
 
+
+### Detect used modules and append them to report:
+
+	cmsscanner.phar cmsscanner:detect --report=/tmp/cmsreport.json --versions --modules /var/www
+
+Output:
+
+	[
+	   {
+		  "name":"Joomla",
+		  "version":"3.4.6",
+		  "path":"\/var\/www\/joomla",
+		  "modules":[
+			 {
+				"name":"mod_articles_archive",
+				"version":"3.0.0",
+				"path":"\/var\/www\/joomla\/modules\/mod_articles_archive",
+				"type":"module"
+			 }
+		  ]
+		}
+	]
+
 ### Read paths from an input file
 It's also possible to pass a file that contains a 0-byte separated list of paths:
 
 	cmsscanner.phar cmsscanner:detect --readfromfile /absolute/path/to/file
+
+## Developer Informations
+
+### Run the tests
+
+#### set up the repo
+- Install composer (if not done yet)
+- cd into the cloned repository
+- run `composer install` to install the dependencies
+
+#### Run the tests
+
+Run the PHP Unit tests
+
+```
+./vendor/bin/phpunit --configuration phpunit.xml
+```
+
+Run the PHPCS tests
+
+```
+./vendor/bin/phpcs --standard=PSR2 src tests/suites
+```
+
+## Prebuilt Packages (unofficial)
+
+- [Archlinux](https://aur.archlinux.org/packages/cmsscanner) by @sanduhrs
