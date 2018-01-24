@@ -116,4 +116,13 @@ class SiteBuilderAdapter implements AdapterInterface
     {
         return 'SiteBuilder';
     }
+
+    /**
+     * @InheritDoc
+     */
+    public function detectModules(\SplFileInfo $path)
+    {
+        // TODO implement this function
+        return false;
+    }
 }

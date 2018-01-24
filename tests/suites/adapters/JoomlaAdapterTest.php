@@ -59,13 +59,8 @@ class JoomlaAdapterTest extends \PHPUnit_Framework_TestCase
             $results[$system->version] = $system;
         }
 
-<<<<<<< HEAD
-        $this->assertCount(10, $results);
-        $this->assertEquals(7, $falseCount);
-=======
         $this->assertCount(14, $results);
-        $this->assertEquals(5, $falseCount);
->>>>>>> 642f32b31e9d3c3bfd308b26b96153e12c1d3fda
+        $this->assertEquals(7, $falseCount);
         $this->assertArrayHasKey('', $results);
         $this->assertArrayHasKey('1.0.11', $results);
         $this->assertArrayHasKey('1.5.25', $results);

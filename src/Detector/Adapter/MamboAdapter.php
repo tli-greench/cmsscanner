@@ -157,4 +157,13 @@ class MamboAdapter implements AdapterInterface
     {
         return 'Mambo';
     }
+
+    /**
+     * @InheritDoc
+     */
+    public function detectModules(\SplFileInfo $path)
+    {
+        // TODO implement this function
+        return false;
+    }
 }

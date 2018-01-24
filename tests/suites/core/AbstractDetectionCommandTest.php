@@ -41,18 +41,14 @@ class AbstractDetectionCommandTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('TYPO3 CMS', $this->object->getAdapters());
         $this->assertArrayHasKey('Prestashop', $this->object->getAdapters());
         $this->assertArrayHasKey('Contao', $this->object->getAdapters());
-<<<<<<< HEAD
+        $this->assertArrayHasKey('Contenido', $this->object->getAdapters());
+        $this->assertArrayHasKey('PivotX', $this->object->getAdapters());
+        $this->assertArrayHasKey('Concrete5', $this->object->getAdapters());
         $this->assertArrayHasKey('CM4all Sites', $this->object->getAdapters());
         $this->assertArrayHasKey('Mambo', $this->object->getAdapters());
         $this->assertArrayHasKey('SiteBuilder', $this->object->getAdapters());
         $this->assertArrayHasKey('CM4all WebSite Creator', $this->object->getAdapters());
-        $this->assertCount(10, $this->object->getAdapters());
-=======
-        $this->assertArrayHasKey('Contenido', $this->object->getAdapters());
-        $this->assertArrayHasKey('PivotX', $this->object->getAdapters());
-        $this->assertArrayHasKey('Concrete5', $this->object->getAdapters());
-        $this->assertCount(9, $this->object->getAdapters());
->>>>>>> 642f32b31e9d3c3bfd308b26b96153e12c1d3fda
+        $this->assertCount(13, $this->object->getAdapters());
     }
 
     public function testAddingAnAdapter()

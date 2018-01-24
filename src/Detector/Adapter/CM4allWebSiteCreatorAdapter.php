@@ -116,4 +116,13 @@ class CM4allWebSiteCreatorAdapter implements AdapterInterface
     {
         return 'CM4all WebSite Creator';
     }
+
+    /**
+     * @InheritDoc
+     */
+    public function detectModules(\SplFileInfo $path)
+    {
+        // TODO implement this function
+        return false;
+    }
 }

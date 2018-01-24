@@ -61,11 +61,7 @@ class WordpressAdapterTest extends \PHPUnit_Framework_TestCase
         }
 
         $this->assertCount(5, $results);
-<<<<<<< HEAD
-        $this->assertEquals(13, $falseCount);
-=======
-        $this->assertEquals(14, $falseCount);
->>>>>>> 642f32b31e9d3c3bfd308b26b96153e12c1d3fda
+        $this->assertEquals(16, $falseCount);
         $this->assertArrayHasKey('', $results);
         $this->assertArrayHasKey('2.2.1', $results);
         $this->assertArrayHasKey('2.9', $results);

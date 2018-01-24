@@ -126,4 +126,13 @@ class CM4allSitesAdapter implements AdapterInterface
     {
         return 'CM4all Sites';
     }
+
+    /**
+     * @InheritDoc
+     */
+    public function detectModules(\SplFileInfo $path)
+    {
+        // TODO implement this function
+        return false;
+    }
 }

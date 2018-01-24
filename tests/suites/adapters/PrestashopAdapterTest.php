@@ -59,11 +59,7 @@ class PrestashopAdapterTest extends \PHPUnit_Framework_TestCase
         }
 
         $this->assertCount(1, $results);
-<<<<<<< HEAD
-        $this->assertEquals(17, $falseCount);
-=======
-        $this->assertEquals(19, $falseCount);
->>>>>>> 642f32b31e9d3c3bfd308b26b96153e12c1d3fda
+        $this->assertEquals(21, $falseCount);
         $this->assertArrayHasKey('1.6.0.14', $results);
         $this->assertInstanceOf('Cmsgarden\Cmsscanner\Detector\System', current($results));
     }

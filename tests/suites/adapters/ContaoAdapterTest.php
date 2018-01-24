@@ -62,18 +62,11 @@ class ContaoAdapterTest extends \PHPUnit_Framework_TestCase
             $results[$system->version] = $system;
         }
 
-<<<<<<< HEAD
-        $this->assertCount(2, $results);
-        $this->assertEquals(17, $falseCount);
-        $this->assertArrayHasKey('2.10', $results);
-        $this->assertArrayHasKey('3.1', $results);
-=======
         $this->assertCount(3, $results);
-        $this->assertEquals(19, $falseCount);
+        $this->assertEquals(21, $falseCount);
         $this->assertArrayHasKey('2.10.4', $results);
         $this->assertArrayHasKey('3.1.0', $results);
         $this->assertArrayHasKey('4.1.1', $results);
->>>>>>> 642f32b31e9d3c3bfd308b26b96153e12c1d3fda
         $this->assertInstanceOf('Cmsgarden\Cmsscanner\Detector\System', current($results));
     }
 
