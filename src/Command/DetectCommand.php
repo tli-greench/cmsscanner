@@ -381,7 +381,7 @@ class DetectCommand extends AbstractDetectionCommand
 	    $result = array(
 		"name" => $result->getName(),
 		"version" => $result->getVersion(),
-		"path" => $realpath
+		"path" => $realpath,
 		'modules' => $modules
 	    );
         });
