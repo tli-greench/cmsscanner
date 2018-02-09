@@ -30,7 +30,8 @@ class SiteBuilderAdapter implements AdapterInterface
     protected $versions = array(
         array(
             'indexname' => '/index.html',
-            'regexp' => '\<meta name="GENERATOR" content=".*SWsoft.*"\>\<meta name="ID" content=".*sitebuilder_([[:digit:]]+).*"\>'
+            'regexp' => '\<meta name="GENERATOR" content=".*SWsoft.*"\>'
+                        .'\<meta name="ID" content=".*sitebuilder_([[:digit:]]+).*"\>'
         ),
     );
 
@@ -62,14 +63,14 @@ class SiteBuilderAdapter implements AdapterInterface
             return false;
         }
 
-	// if index.html does not contain sitebuilder, this is not considered a sitebuilder installation
+        // if index.html does not contain sitebuilder, this is not considered a sitebuilder installation
         if (stripos($file->getContents(), 'sitebuilder') === false) {
-	    return false;
+            return false;
         }
 
-	//print_r ($file->getPathInfo());
-	//print_r ($file->getPathInfo()->getPathName());
-	//print_r ("\n");
+        //print_r ($file->getPathInfo());
+        //print_r ($file->getPathInfo()->getPathName());
+        //print_r ("\n");
 
         $path = new \SplFileInfo($file->getPathInfo()->getPathName());
 
@@ -87,11 +88,11 @@ class SiteBuilderAdapter implements AdapterInterface
     public function detectVersion(\SplFileInfo $path)
     {
         foreach ($this->versions as $version) {
-	    //printf("checking path: %s\n", $path);
+            //printf("checking path: %s\n", $path);
             $indexFile = $path->getRealPath() . $version['indexname'];
 
             if (!file_exists($indexFile)) {
-		//printf("missing indexFile %s\n", $indexFile);
+                //printf("missing indexFile %s\n", $indexFile);
                 continue;
             }
 
@@ -99,9 +100,9 @@ class SiteBuilderAdapter implements AdapterInterface
                 throw new \RuntimeException(sprintf("Unreadable version information file %s", $indexFile));
             }
 
-	    // no version information so far, so just return latest known version if Sites is detected...
+            // no version information so far, so just return latest known version if Sites is detected...
             if (preg_match($version['regexp'], file_get_contents($indexFile), $matches)) {
-		return "1.0";
+                return "1.0";
             }
         }
 

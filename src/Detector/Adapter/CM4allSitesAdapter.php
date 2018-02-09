@@ -64,16 +64,16 @@ class CM4allSitesAdapter implements AdapterInterface
         }
 
         if (stripos($file->getContents(), '"/.cm4all/include/base.php"') === false) {
-	    return false;
+            return false;
         }
 
-	//print_r ($file->getPathInfo());
-	//print_r ($file->getPathInfo()->getPathName());
-	//print_r ("\n");
-	// if there is no base.php in the .cm4all subdirectory it is not a cm4all toplevel dir
-	if (!is_readable($file->getPathInfo()->getPathName() . "/.cm4all/include/base.php")) {
-	    return false;
-	}
+        //print_r ($file->getPathInfo());
+        //print_r ($file->getPathInfo()->getPathName());
+        //print_r ("\n");
+        // if there is no base.php in the .cm4all subdirectory it is not a cm4all toplevel dir
+        if (!is_readable($file->getPathInfo()->getPathName() . "/.cm4all/include/base.php")) {
+            return false;
+        }
 
         $path = new \SplFileInfo($file->getPathInfo()->getPathName());
 
@@ -91,17 +91,17 @@ class CM4allSitesAdapter implements AdapterInterface
     public function detectVersion(\SplFileInfo $path)
     {
         foreach ($this->versions as $version) {
-	    //printf("checking path: %s\n", $path);
+            //printf("checking path: %s\n", $path);
             $indexFile = $path->getRealPath() . $version['indexname'];
             $cm4allIncludeFile = $path->getRealPath() . $version['cm4allincludename'];
 
             if (!file_exists($indexFile)) {
-		//printf("missing indexFile %s\n", $indexFile);
+                //printf("missing indexFile %s\n", $indexFile);
                 continue;
             }
 
             if (!file_exists($cm4allIncludeFile)) {
-		//printf("missing cm4allIncludeFile %s\n", $cm4allIncludeFile);
+                //printf("missing cm4allIncludeFile %s\n", $cm4allIncludeFile);
                 continue;
             }
 
@@ -109,9 +109,9 @@ class CM4allSitesAdapter implements AdapterInterface
                 throw new \RuntimeException(sprintf("Unreadable version information file %s", $indexFile));
             }
 
-	    // no version information so far, so just return latest known version if Sites is detected...
+            // no version information so far, so just return latest known version if Sites is detected...
             if (preg_match($version['regexp'], file_get_contents($indexFile), $matches)) {
-		return "2.3";
+                return "2.3";
             }
         }
 

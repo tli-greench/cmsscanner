@@ -62,10 +62,10 @@ class CM4allWebSiteCreatorAdapter implements AdapterInterface
             return false;
         }
 
-	//print ("detectSystem: Path info\n");
-	//print_r ($file->getPathInfo());
-	//print_r ($file->getPathInfo()->getPathName());
-	//print_r ("\n");
+        //print ("detectSystem: Path info\n");
+        //print_r ($file->getPathInfo());
+        //print_r ($file->getPathInfo()->getPathName());
+        //print_r ("\n");
         if (stripos($file->getContents(), '<meta name="GENERATOR" content="www.cm4all.com"><TITLE>') === false) {
             return false;
         }
@@ -86,11 +86,11 @@ class CM4allWebSiteCreatorAdapter implements AdapterInterface
     public function detectVersion(\SplFileInfo $path)
     {
         foreach ($this->versions as $version) {
-	    //printf("checking path: %s\n", $path);
+            //printf("checking path: %s\n", $path);
             $indexFile = $path->getRealPath() . $version['indexname'];
 
             if (!file_exists($indexFile)) {
-		//printf("missing indexFile %s\n", $indexFile);
+                //printf("missing indexFile %s\n", $indexFile);
                 continue;
             }
 
@@ -99,9 +99,9 @@ class CM4allWebSiteCreatorAdapter implements AdapterInterface
                 throw new \RuntimeException(sprintf("Unreadable version information file %s", $indexFile));
             }
 
-	    // no version information so far, so just return latest known version if Sites is detected...
+            // no version information so far, so just return latest known version if Sites is detected...
             if (preg_match($version['regexp'], file_get_contents($indexFile), $matches)) {
-		return "1.0.2015";
+                return "1.0.2015";
             }
         }
 

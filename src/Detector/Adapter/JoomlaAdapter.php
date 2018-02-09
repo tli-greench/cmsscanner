@@ -287,26 +287,26 @@ class JoomlaAdapter implements AdapterInterface
             return false;
         }
 
-	// old Mambo
-	$versionFile = $file->getPath() . "/version.php";
-	if (file_exists($versionFile)) {
+        // old Mambo
+        $versionFile = $file->getPath() . "/version.php";
+        if (file_exists($versionFile)) {
             if (is_readable($versionFile)) {
-		if (stripos(file_get_contents($versionFile), "Mambo") !== false) {
-		    return false;
-		}
+                if (stripos(file_get_contents($versionFile), "Mambo") !== false) {
+                    return false;
+                }
             }
-	}
-	// later versions of Mambo
-	$versionFile = $file->getPath() . $this->version['files'][0];
-	if (file_exists($versionFile)) {
+        }
+        // later versions of Mambo
+        $versionFile = $file->getPath() . $this->version['files'][0];
+        if (file_exists($versionFile)) {
             if (is_readable($versionFile)) {
-		if (stripos(file_get_contents($versionFile), "Mambo") !== false) {
-		    return false;
-		}
+                if (stripos(file_get_contents($versionFile), "Mambo") !== false) {
+                    return false;
+                }
             }
-	}
+        }
 
-	// JConfig can be found in installer configuration.php so add class ...
+        // JConfig can be found in installer configuration.php so add class ...
         //if (stripos($file->getContents(), "JConfig") === false
         if (stripos($file->getContents(), "class JConfig") === false
             && stripos($file->getContents(), 'mosConfig') === false) {
@@ -330,10 +330,10 @@ class JoomlaAdapter implements AdapterInterface
 
         $path = new \SplFileInfo($file->getPath());
 
-	// TODO - exception?
-	if ($path === null) {
-	    printf("OOPS: path is null\n");
-	}
+        // TODO - exception?
+        if ($path === null) {
+            printf("OOPS: path is null\n");
+        }
 
         // Return result if working
         return new System($this->getName(), $path);

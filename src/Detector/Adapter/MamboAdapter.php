@@ -62,23 +62,23 @@ class MamboAdapter implements AdapterInterface
             return false;
         }
 
-	$found = false;
+        $found = false;
         foreach ($this->version['files'] as $versionFile) {
-	    $versionFile = $file->getPath() . $versionFile;
-	    //printf ("Check for Mambo version.php? %s\n", $versionFile);
-	    if (! file_exists($versionFile) 
-		|| ! is_readable($versionFile)) {
-		continue;
-	    }
-	    if (stripos(file_get_contents($versionFile), "Mambo") !== false) {
-		//printf ("Mambo found in %s\n", $versionFile);
-		$found = true;
-		break;
-	    }
-	}
-	if (! $found) {
-	    return false;
-	}
+            $versionFile = $file->getPath() . $versionFile;
+            //printf ("Check for Mambo version.php? %s\n", $versionFile);
+            if (! file_exists($versionFile)
+                || ! is_readable($versionFile)) {
+                continue;
+            }
+            if (stripos(file_get_contents($versionFile), "Mambo") !== false) {
+                //printf ("Mambo found in %s\n", $versionFile);
+                $found = true;
+                break;
+            }
+        }
+        if (! $found) {
+            return false;
+        }
 
         //if (stripos($file->getContents(), "JConfig") === false
         if (stripos($file->getContents(), "class JConfig") !== false
@@ -103,9 +103,9 @@ class MamboAdapter implements AdapterInterface
 
         $path = new \SplFileInfo($file->getPath());
 
-	if ($path === null) {
-	    printf("OOPS: path is null\n");
-	}
+        if ($path === null) {
+            printf("OOPS: path is null\n");
+        }
 
         // Return result if working
         return new System($this->getName(), $path);
@@ -132,7 +132,7 @@ class MamboAdapter implements AdapterInterface
                 continue; // @codeCoverageIgnore
             }
 
-	    //printf("checking mambo version: %s\n", $this->version['regex_release']);
+            //printf("checking mambo version: %s\n", $this->version['regex_release']);
             preg_match($this->version['regex_release'], file_get_contents($versionFile), $release);
             preg_match($this->version['regex_devlevel'], file_get_contents($versionFile), $devlevel);
 
